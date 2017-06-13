@@ -1,6 +1,6 @@
 '''
 
-This allows the user interact with the z-axis when it is the content of a popup
+This allows the user to calibrate the machine when it is the content of a popup
 
 '''
 from   kivy.uix.gridlayout                       import   GridLayout

@@ -3,6 +3,7 @@ from DataStructures.makesmithInitFuncs           import    MakesmithInitFuncs
 from UIElements.scrollableTextPopup              import    ScrollableTextPopup
 from kivy.uix.popup                              import    Popup
 from UIElements.measureMachinePopup              import    MeasureMachinePopup
+from UIElements.calibrationGrid                  import    CalibrationGrid
 from UIElements.calibrateLengthsPopup            import    CalibrateLengthsPopup
 
 class Diagnostics(FloatLayout, MakesmithInitFuncs):
@@ -73,7 +74,7 @@ class Diagnostics(FloatLayout, MakesmithInitFuncs):
         Spawns a walk through that helps the user measure the machine's dimensions
         
         '''
-        self.popupContent      = MeasureMachinePopup(done=self.dismissMeasureMachinePopup)
+        self.popupContent      = CalibrationGrid()#MeasureMachinePopup(done=self.dismissMeasureMachinePopup)
         self.popupContent.data = self.data
         self._popup = Popup(title="Setup Machine Dimensions", content=self.popupContent,
                             size_hint=(0.85, 0.95))

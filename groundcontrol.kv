@@ -982,7 +982,18 @@
                 text: 'Finish'
                 on_release: root.done()
                 size_hint_x: rightCol
-    
+
+<CalibrationGrid>:
+    cols: 1
+    size: root.size
+    pos: root.pos
+    Button:
+        text: "Run Calibration"
+        on_release: root.runCalibrationPatternCut()
+    Button:
+        text: "Stop"
+        on_release: root.stop()
+
 <CalibrateLengthsPopup>:
     carousel:carousel
     
