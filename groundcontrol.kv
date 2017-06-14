@@ -991,9 +991,14 @@
         cols: 1
         FloatLayout:
             size_hint_y: .8
+            #:set horizSpacing .221
+            #:set vertSpacing .377
             canvas:
                 Color:
                     rgb: (1,1,1)
+                
+                #Boarder
+                
                 Line:
                     points: (self.x,self.y,self.x, self.y + self.height)
                 Line:
@@ -1004,9 +1009,64 @@
                     points: (self.x + self.width, self.y, self.x, self.y)
                 Color:
                     rgb: (1,1,1)
+                
+                #Middle row
+                
                 Ellipse:
-                    pos: (self.x + self.width/2, self.y + self.height/2)
+                    pos: (self.x + self.width/2 , self.y + self.height/2)
                     size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 1*horizSpacing*self.width, self.y + self.height/2)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 1*horizSpacing*self.width, self.y + self.height/2)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 2*horizSpacing*self.width, self.y + self.height/2)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 2*horizSpacing*self.width, self.y + self.height/2)
+                    size: (5,5)
+                
+                #Top row
+                
+                Ellipse:
+                    pos: (self.x + self.width/2 , self.y + self.height/2 + self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 1*horizSpacing*self.width, self.y + self.height/2 + self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 1*horizSpacing*self.width, self.y + self.height/2 + self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 2*horizSpacing*self.width, self.y + self.height/2 + self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 2*horizSpacing*self.width, self.y + self.height/2 + self.height*vertSpacing)
+                    size: (5,5)
+                
+                #Bottom row
+                
+                Ellipse:
+                    pos: (self.x + self.width/2 , self.y + self.height/2 - self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 1*horizSpacing*self.width, self.y + self.height/2 - self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 1*horizSpacing*self.width, self.y + self.height/2 - self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 - 2*horizSpacing*self.width, self.y + self.height/2 - self.height*vertSpacing)
+                    size: (5,5)
+                Ellipse:
+                    pos: (self.x + self.width/2 + 2*horizSpacing*self.width, self.y + self.height/2 - self.height*vertSpacing)
+                    size: (5,5)
+                
+                #Measurement indicator
+                Line:
+                    points: (self.x + self.width/2 + 2*horizSpacing*self.width, self.y + self.height/2 - self.height*vertSpacing, self.x + self.width/2 - 1*horizSpacing*self.width, self.y + self.height/2 + self.height*vertSpacing)
         Label:
             size_hint_y: .2
             text: "Description of what to do here"
