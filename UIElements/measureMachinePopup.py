@@ -158,42 +158,32 @@ class MeasureMachinePopup(GridLayout):
         each sprocket to 12:00
         
         '''
-        self.data.gcode_queue.put("B06 L0 R0 ");
+        self.data.gcode_queue.put("$MSLW5=0");
+        self.data.gcode_queue.put("$MSLW6=0");
         self.carousel.load_next()
     
     def LeftCW(self):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 L.5 F100 ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW7=.5")
     
     def LeftCCW(self):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 L-.5 F100 ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW7=-.5")
         
     def RightCW(self):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 R-.5 F100 ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW8=-.5")
     
     def RightCCW(self):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 R.5 F100 ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW8=.5")
     
     def extendLeft(self, dist):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 L" + str(dist) + " ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW7=" + str(dist) + " ")
     
     def retractLeft(self, dist):
-        self.data.gcode_queue.put("G91 ")
-        self.data.gcode_queue.put("B09 L-" + str(dist) + " ")
-        self.data.gcode_queue.put("G90 ")
+        self.data.gcode_queue.put("$MSLW8=" + str(dist) + " ")
     
     def setZero(self):
         #mark that the sprockets are straight up
-        self.data.gcode_queue.put("B06 L0 R0 ");
+        self.data.gcode_queue.put("$MSLW5=0");
+        self.data.gcode_queue.put("$MSLW6=0");
         self.carousel.load_next()
     
     def measureLeft(self):
