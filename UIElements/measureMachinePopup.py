@@ -158,36 +158,36 @@ class MeasureMachinePopup(GridLayout):
         each sprocket to 12:00
         
         '''
+        self.data.gcode_queue.put("$MSLW4=0");
         self.data.gcode_queue.put("$MSLW5=0");
-        self.data.gcode_queue.put("$MSLW6=0");
         self.carousel.load_next()
     
     def LeftCW(self):
-        self.data.gcode_queue.put("$MSLW7=.5")
+        self.data.gcode_queue.put("$MSLW6=.5")
     
     def LeftCCW(self):
-        self.data.gcode_queue.put("$MSLW7=-.5")
+        self.data.gcode_queue.put("$MSLW6=-.5")
         
     def RightCW(self):
-        self.data.gcode_queue.put("$MSLW8=-.5")
+        self.data.gcode_queue.put("$MSLW7=-.5")
     
     def RightCCW(self):
-        self.data.gcode_queue.put("$MSLW8=.5")
+        self.data.gcode_queue.put("$MSLW7=.5")
     
     def extendLeft(self, dist):
-        self.data.gcode_queue.put("$MSLW7=" + str(dist) + " ")
+        self.data.gcode_queue.put("$MSLW6=" + str(dist) + " ")
     
     def retractLeft(self, dist):
-        self.data.gcode_queue.put("$MSLW8=" + str(dist) + " ")
+        self.data.gcode_queue.put("$MSLW6=-" + str(dist) + " ")
     
     def setZero(self):
         #mark that the sprockets are straight up
+        self.data.gcode_queue.put("$MSLW4=0");
         self.data.gcode_queue.put("$MSLW5=0");
-        self.data.gcode_queue.put("$MSLW6=0");
         self.carousel.load_next()
     
     def measureLeft(self):
-        self.data.gcode_queue.put("B10 L")
+        self.data.gcode_queue.put("$MSLW8")
     
     def readMotorSpacing(self, dist):
         
@@ -285,10 +285,6 @@ class MeasureMachinePopup(GridLayout):
         
         self.carousel.load_next()
     
-    def calibrateChainLengths(self):
-        print "calibrating"
-        self.data.gcode_queue.put("B02 ")
-    
     def enableZaxis(self, *args):
         '''
         
@@ -312,7 +308,8 @@ class MeasureMachinePopup(GridLayout):
     
     def finishChainCalibration(self, *args):
         #adjust chain lengths to put the sled in the center
-        self.data.gcode_queue.put("B15 ")
+        self.data.gcode_queue.put("$MSLW10")
+        self.data.gcode_queue.put("$K")
         self.carousel.load_next()
     
     def setKinematicsType(self, kinematicsType, *args):

@@ -18,7 +18,8 @@ class MeasureOutChains(Widget):
             self.data.gcode_queue.queue.clear()
     
     def next(self):
-        self.data.gcode_queue.put("B15 ")
+        self.data.gcode_queue.put("$MSLW10")
+        self.data.gcode_queue.put("$K")
         self.carousel.load_next()
     
     '''
@@ -39,7 +40,7 @@ class MeasureOutChains(Widget):
             Clock.schedule_once(self.countingDownL, 1)
         else:
             self.leftChainBtn.text = '   Extend\nLeft Chain'
-            self.data.gcode_queue.put("B02 L1 R0 ")
+            self.data.gcode_queue.put("$MSLW8=1650")
     
     '''
     Right Chain
@@ -60,4 +61,4 @@ class MeasureOutChains(Widget):
             Clock.schedule_once(self.countingDownR, 1)
         else:
             self.rightChainBtn.text = '   Extend\nRight Chain'
-            self.data.gcode_queue.put("B02 L0 R1 ")
+            self.data.gcode_queue.put("$MSLW9=1650")

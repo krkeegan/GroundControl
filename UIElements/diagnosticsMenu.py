@@ -47,8 +47,8 @@ class Diagnostics(FloatLayout, MakesmithInitFuncs):
         
     def calibrateChainLengths(self):
         #establish known initial conditions
+        self.data.gcode_queue.put("$MSLW4=0");
         self.data.gcode_queue.put("$MSLW5=0");
-        self.data.gcode_queue.put("$MSLW6=0");
         
         self.popupContent      = CalibrateLengthsPopup(done=self.dismissMeasureMachinePopup)
         
@@ -59,7 +59,9 @@ class Diagnostics(FloatLayout, MakesmithInitFuncs):
         self._popup.open()
     
     def manualCalibrateChainLengths(self):
-        self.data.gcode_queue.put("B08 ")
+        self.data.gcode_queue.put("$MSLW4=1650")
+        self.data.gcode_queue.put("$MSLW5=1650")
+        self.data.gcode_queue.put("$K");
         self.parentWidget.close()
     
     def testMotors(self):
